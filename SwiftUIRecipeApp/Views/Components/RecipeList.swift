@@ -22,7 +22,11 @@ struct RecipeList: View {
             
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 160), spacing: 15)], spacing: 15) {
                 ForEach(recipes) { recipe in
-                    RecipeCard(recipe: recipe)
+                        NavigationLink {
+                            RecipeView(recipe: recipe)
+                        } label: {
+                            RecipeCard(recipe: recipe)
+                        }
                 }
             }
             .padding(.top)
@@ -34,8 +38,11 @@ struct RecipeList: View {
 
 struct RecipeList_Previews: PreviewProvider {
     static var previews: some View {
-        ScrollView {
-        RecipeList(recipes: Recipe.all)
+        NavigationView {
+            ScrollView {
+                RecipeList(recipes: Recipe.all)
+            }
         }
+       
     }
 }
