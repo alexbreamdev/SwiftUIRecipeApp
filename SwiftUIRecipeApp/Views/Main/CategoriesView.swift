@@ -11,8 +11,12 @@ struct CategoriesView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(Category.allCases, id: \.self) { category in
-                    Text(category.rawValue + "s")
+                ForEach(Category.allCases) { category in
+                    NavigationLink{
+                        CategoryView(category: category)
+                    } label: {
+                        Text(category.rawValue + "s")
+                    }
                 }
             }
             .navigationTitle("My Recipes")
